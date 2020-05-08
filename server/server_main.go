@@ -19,7 +19,8 @@ func main() {
 		ExposeHeaders:    []string{"Content-Length"},
 		AllowCredentials: true,
 		AllowOriginFunc: func(origin string) bool {
-			return origin == "http://node.rayer.idv.tw"
+			//return origin == "http://node.rayer.idv.tw"
+			return true
 		},
 		MaxAge: 12 * time.Hour,
 	}))
