@@ -7,23 +7,11 @@ import (
 	"github.com/moogar0880/problems"
 	_ "github.com/rayer/chatbot"
 	"net/http"
-	"time"
 )
 
 func main() {
 	r := gin.Default()
-	r.Use(cors.New(cors.Config{
-		AllowOrigins:     []string{"*"},
-		AllowMethods:     []string{"GET", "POST", "PUT", "PATCH"},
-		AllowHeaders:     []string{"Origin"},
-		ExposeHeaders:    []string{"Content-Length"},
-		AllowCredentials: true,
-		AllowOriginFunc: func(origin string) bool {
-			//return origin == "http://node.rayer.idv.tw"
-			return true
-		},
-		MaxAge: 12 * time.Hour,
-	}))
+	r.Use(cors.Default())
 
 	chatbot := apiLib.NewChatbotContext()
 
