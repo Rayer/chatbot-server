@@ -5,7 +5,6 @@ RUN cd /ChatbotAPIs/server && CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o 
 
 FROM scratch
 WORKDIR /app
-COPY --from=build-env /ChatbotAPIs/server/server /app/
-CMD /bin/sh
+COPY --from=build-env /ChatbotAPIs/server/server /app
 EXPOSE 8080
-ENTRYPOINT /app/server
+ENTRYPOINT ["/app/server"]
