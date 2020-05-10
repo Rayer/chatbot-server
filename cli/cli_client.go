@@ -26,7 +26,7 @@ func main() {
 	}
 	fmt.Println("Welcome " + id + ", start invoking session...")
 
-	utx := cc.GetUserContext(id)
+	utx, _ := cc.GetUserContext(id)
 	fmt.Println(utx.RenderMessage())
 
 	for {
