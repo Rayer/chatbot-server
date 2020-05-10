@@ -27,15 +27,18 @@ func NewChatbotContext() *ChatbotContext {
 	return &ret
 }
 
-func (c *ChatbotContext) GetUserContext(user string) *ChatBot.UserContext {
+func (c *ChatbotContext) GetUserContext(user string) (userContext *ChatBot.UserContext, existing bool) {
 	var ret *ChatBot.UserContext
+	existing = true
 	ret = c.ctxMgr.GetUserContext(user)
 	if ret == nil {
+		existing = false
 		ret = c.ctxMgr.CreateUserContext(user, func() ChatBot.Scenario {
 			return &RootScenario{}
 		})
 	}
-	return ret
+
+	return ret, existing
 }
 
 func (c *ChatbotContext) ExpireUser(user string, foundUser func(), notfound func()) {

@@ -37,15 +37,18 @@ func main() {
 		var conv apiLib.ChatbotConversion
 		err := c.BindJSON(&conv)
 
-		utx := chatbot.GetUserContext(conv.User)
+		utx, _ := chatbot.GetUserContext(conv.User)
+
 		prompt, keywords_v, keywords_iv, err := utx.RenderMessageWithDetail()
 		str, err := utx.HandleMessage(conv.Input)
+		next, err := utx.RenderMessage()
 		c.JSON(http.StatusOK, gin.H{
 			"prompt":           prompt,
 			"keywords":         keywords_v,
 			"invalid_keywords": keywords_iv,
 			"message":          str,
 			"error":            err,
+			"next":             next,
 		})
 	})
 
