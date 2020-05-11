@@ -1,7 +1,9 @@
 package ChatbotAPIs
 
 import (
+	"crypto/tls"
 	"encoding/json"
+	"fmt"
 	"net/http"
 )
 
@@ -16,14 +18,20 @@ type RandomJoke struct {
 }
 
 func fetchRandomJoke() (*RandomJoke, error) {
-	res, err := http.Get("https://official-joke-api.appspot.com/random_joke")
+	tr := &http.Transport{
+		TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
+	}
+	client := &http.Client{Transport: tr}
+	resp, err := client.Get("https://official-joke-api.appspot.com/random_joke")
 	if err != nil {
+		fmt.Println("error:", err)
 		return nil, err
 	}
+	defer resp.Body.Close()
+	body := resp.Body
 
-	defer res.Body.Close()
 	ret := RandomJoke{}
-	err = json.NewDecoder(res.Body).Decode(&ret)
+	err = json.NewDecoder(body).Decode(&ret)
 	if err != nil {
 		return nil, err
 	}
