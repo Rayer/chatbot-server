@@ -1,7 +1,7 @@
 package main
 
 import (
-	apiLib "UtilAPIs"
+	apiLib "ChatBotServer"
 	"bufio"
 	"fmt"
 	"github.com/sirupsen/logrus"
