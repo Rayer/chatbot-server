@@ -1,7 +1,7 @@
 package main
 
 import (
-	apiLib "UtilAPIs"
+	apiLib "ChatBotServer"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/moogar0880/problems"

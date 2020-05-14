@@ -1,4 +1,4 @@
-module UtilAPIs
+module ChatBotServer
 
 go 1.13
 
