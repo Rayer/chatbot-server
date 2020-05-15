@@ -13,7 +13,7 @@ func main() {
 	cc := apiLib.NewChatbotContext()
 	logrus.SetLevel(logrus.WarnLevel)
 	reader := bufio.NewReader(os.Stdin)
-	fmt.Print("Enter ID [BotSpec] : ")
+	fmt.Print("Enter ID [BotSpec]: ")
 	id, err := reader.ReadString('\n')
 	//Trim \n
 	id = strings.Replace(id, "\n", "", -1)
